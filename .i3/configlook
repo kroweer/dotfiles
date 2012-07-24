@@ -1,0 +1,282 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+#{{{ Main
+ipc-socket ~/.i3/i3-ipc.sock
+
+set $mod Mod4
+set $alt Mod1
+set $ctrl Control
+
+# > horizontal | vertical | auto
+default_orientation horizontal
+
+# > default | stacking | tabbed
+workspace_layout default
+
+# > normal | 1pixel | none
+new_window 1pixel
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+#}}}
+
+#{{{ Fonts
+# font for window titles. ISO 10646 = Unicode
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# font -*-terminus-medium-r-normal-*-14-*-*-*-c-*-iso10646-1
+font -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso10646-1
+#}}}
+
+#{{{ For winwows...
+# Floating fow windows
+for_window [class="dosbox"] floating enable
+
+# Borders for windows
+# for_window [class="XTerm"] border none
+# for_window [class="URxvt"] border none
+for_window [class="Links"]      border none
+for_window [class="Opera"]      border none
+for_window [class="Gvim"]       border none
+for_window [class="Chromium"]   border none
+#}}}
+
+#{{{ Autostart
+exec --no-startup-id ~/.fehbg
+# exec --no-startup-id conky -d
+# exec udisks --mount /dev/mmcblk0p1
+#}}}
+
+#{{{ Start terminal
+# start a terminal
+bindsym $mod+Shift+Return   exec --no-startup-id i3-sensible-terminal
+bindsym $mod+Return         exec --no-startup-id urxvtc
+bindsym $mod+i              exec --no-startup-id urxvtc -e ipython --profile pysh
+#}}}
+
+#{{{ Workspaces
+set $w1 1 sys
+set $w2 2 dev
+set $w3 3 web
+set $w4 4 ssh
+set $w5 5 irc
+set $w6 6 dos
+set $w7 7 media
+set $w8 8 tmp
+set $w9 9 misc
+
+# switch to workspace
+bindsym $mod+1 workspace $w1
+bindsym $mod+2 workspace $w2
+bindsym $mod+3 workspace $w3
+bindsym $mod+4 workspace $w4
+bindsym $mod+5 workspace $w5
+bindsym $mod+6 workspace $w6
+bindsym $mod+7 workspace $w7
+bindsym $mod+8 workspace $w8
+bindsym $mod+9 workspace $w9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+exclam       move workspace $w1
+bindsym $mod+Shift+at           move workspace $w2
+bindsym $mod+Shift+numbersign   move workspace $w3
+bindsym $mod+Shift+dollar       move workspace $w4
+bindsym $mod+Shift+percent      move workspace $w5
+bindsym $mod+Shift+asciicircum  move workspace $w6
+bindsym $mod+Shift+ampersand    move workspace $w7
+bindsym $mod+Shift+asterisk     move workspace $w8
+bindsym $mod+Shift+parenleft    move workspace $w9
+bindsym $mod+Shift+parenright   move workspace 10
+
+bindsym $mod+c workspace back_and_forth
+
+bindsym $mod+grave workspace prev
+bindsym $mod+minus workspace prev
+bindsym $mod+equal workspace next
+
+#}}}
+
+#{{{ Assigns
+assign [class="Opera"]      $w3
+assign [class="Chromium"]   $w3
+assign [class="Links"]      $w3
+assign [class="Gvim"]       $w2
+assign [class="dosbox"]     $w6
+# assign [class="Gvim"]     4 dev
+#}}}
+
+# kill focused window
+bindsym $mod+Shift+Q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id dmenu_run -b -l 7 -p ">>>" -fn "7x14"
+
+#{{{ Change focus
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left   focus left
+bindsym $mod+Down   focus down
+bindsym $mod+Up     focus up
+bindsym $mod+Right  focus right
+
+# focus the parent container
+#bindsym $mod+a focus parent
+
+# focus the child container
+#bindcode $mod+d focus child
+#}}}
+
+#{{{ Move windows
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left     move left
+bindsym $mod+Shift+Down     move down
+bindsym $mod+Shift+Up       move up
+bindsym $mod+Shift+Right    move right
+#}}}
+
+#{{{ Splits
+# split in horizontal orientation
+bindsym $mod+x split h
+# split in vertical orientation
+bindsym $mod+z split v
+#}}}
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+#{{{ Layout
+# change container layout (stacked, tabbed, default)
+bindsym $mod+e layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+q layout default
+#}}}
+
+#{{{ Border
+bindsym $mod+t border normal
+bindsym $mod+y border 1pixel
+bindsym $mod+u border none
+#}}}
+
+#{{{ Tiling / Floating
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+#}}}
+
+#{{{ i3 reload / restart / exit
+# reload the configuration file
+bindsym $mod+Shift+C reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+R restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+E exit
+#}}}
+
+#{{{ Resize
+# resize window (you can also use the mouse for that)
+bindsym $mod+$ctrl+h        resize shrink left 10 px or 10 ppt
+bindsym $mod+$ctrl+Shift+h  resize grow   left 10 px or 10 ppt
+
+bindsym $mod+$ctrl+j        resize shrink down 10 px or 10 ppt
+bindsym $mod+$ctrl+Shift+j  resize grow   down 10 px or 10 ppt
+
+bindsym $mod+$ctrl+k        resize shrink up 10 px or 10 ppt
+bindsym $mod+$ctrl+Shift+k  resize grow   up 10 px or 10 ppt
+
+bindsym $mod+$ctrl+l        resize shrink right 10 px or 10 ppt
+bindsym $mod+$ctrl+Shift+l  resize grow   right 10 px or 10 ppt
+
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # They resize the border in the direction you pressed, e.g.
+        # when pressing left, the window is resized so that it has
+        # more space on its left
+
+bindsym j resize shrink left 10 px or 10 ppt
+bindsym Shift+J resize grow   left 10 px or 10 ppt
+
+bindsym k resize shrink down 10 px or 10 ppt
+bindsym Shift+K resize grow   down 10 px or 10 ppt
+
+bindsym l resize shrink up 10 px or 10 ppt
+bindsym Shift+L resize grow   up 10 px or 10 ppt
+
+bindsym semicolon resize shrink right 10 px or 10 ppt
+bindsym Shift+colon resize grow   right 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+bindsym Left resize shrink left 10 px or 10 ppt
+bindsym Shift+Left resize grow   left 10 px or 10 ppt
+
+bindsym Down resize shrink down 10 px or 10 ppt
+bindsym Shift+Down resize grow   down 10 px or 10 ppt
+
+bindsym Up resize shrink up 10 px or 10 ppt
+bindsym Shift+Up resize grow   up 10 px or 10 ppt
+
+bindsym Right resize shrink right 10 px or 10 ppt
+bindsym Shift+Right resize grow   right 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+#}}}
+
+#{{{ i3bar
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    status_command i3status
+    position top
+#{{{ i3bar colors
+    colors {
+        background #0e0e0e
+        statusline #c0c0c0
+
+        focused_workspace  #c0c0c0 #0e0e0e
+        inactive_workspace #595959 #0e0e0e
+        urgent_workspace   #c0c0c0 #ff4500
+#       active_workspace   #696969 #0e0e0e
+    }
+#}}}
+}
+#}}}
+
+#{{{ Colors
+# Colors
+# class                 border  backgr. text
+client.focused          #c0c0c0 #c0c0c0 #595959
+client.focused_inactive #292929 #292929 #c0c0c0
+client.unfocused        #292929 #292929 #595959
+client.urgent           #ff4500 #ff4500 #c0c0c0
+#client.background       #000000
+#}}}
+
+# My binds
+bindsym $mod+v exec gvim
+bindsym $mod+m exec udisks --mount /dev/mmcblk0p1
+bindsym $mod+Shift+m exec udisks --unmount /dev/mmcblk0p1
+#bindsym $mod+i exec --no-startup-id xlinks -g
+
+# vim: fdm=marker
+
