@@ -1,6 +1,6 @@
 # Set GtkSettings color scheme property.
 # This can be overriden (via an xsetting) with eg. the gnome-appearance-properties.
-gtk_color_scheme = "fg_color:#ffffff\nbg_color:#3f3f3f\nbase_color:#191919\ntext_color:#808080\nselected_bg_color:#540404\nselected_fg_color:#ffffff\ntooltip_bg_color:#3f3f3f\ntooltip_fg_color:#ffffff"
+gtk_color_scheme = "fg_color:#ffffff\nbg_color:#121212\nbase_color:#191919\ntext_color:#808080\nselected_bg_color:#540404\nselected_fg_color:#ffffff\ntooltip_bg_color:#3f3f3f\ntooltip_fg_color:#ffffff"
 
 style "clearlooks-default"
 {
