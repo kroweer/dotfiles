@@ -154,9 +154,9 @@ client.urgent           #ff4500 #ff4500 #AB0101
 bar {
 	colors {
         background #121212
-        statusline #3F3F3F
+        statusline #909090
 
-        focused_workspace  #000000 #909090
+        focused_workspace  #909090 #000000
         active_workspace   #ffffff #333333
         inactive_workspace #888888 #222222
         urgent_workspace   #ffffff #900000

@@ -1,7 +1,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PS1='\[\e[0;31m\]\A\[\e[0;31m\][ \W ] \[\e[0;32m\]\$ \[\e[0m\]'
+PS1='\[\e[0;31m\]\A\[\e[0;31m\][ \W ]\[\e[0;37m\]: \[\e[0m\]'
 
 PATH=$PATH:/home/jd/.bin:
 export PATH
@@ -26,6 +26,7 @@ alias pacs="pacsearch.sh"
 alias pacg="sudo pacman -S"
 alias paci="sudo pacman -Si"
 alias pacup="sudo pacman -Syu"
+alias wi="wicd-curses"
 
 function sslcrypt {
   item=$(echo $1 | sed -e 's/\/$//') # get rid of trailing / on directories
